@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Dharshini S — Computer Science Engineering student, aspiring AI Developer, Full Stack Developer, and UI/UX Designer. Explore my futuristic portfolio." />
+  <meta name="keywords" content="Dharshini S, portfolio, AI developer, full stack, UI/UX, CSE student, web developer" />
+  <meta name="author" content="Dharshini S" />
+  <meta property="og:title" content="Dharshini S — Futuristic AI Portfolio" />
+  <meta property="og:description" content="Building smart AI experiences and beautiful digital products." />
+  <title>Dharshini S | AI + Full Stack Developer Portfolio</title>
+
+  <!-- CSS Files (Section by Section) -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/experience.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/achievements.css" />
+  <link rel="stylesheet" href="css/education.css" />
+  <link rel="stylesheet" href="css/services.css" />
+  <link rel="stylesheet" href="css/resume.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Back-to-top button style (inline for simplicity) -->
+  <style>
+    #back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-bright));
+      color: #07121C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0, 201, 167, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      border: none;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #back-to-top:hover {
+      box-shadow: 0 8px 28px rgba(0, 245, 212, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Page Loader */
+    #page-loader {
+      position: fixed;
+      inset: 0;
+      background: #07121C;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .loader-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00F5D4, #00C9A7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .loader-bar {
+      width: 160px;
+      height: 2px;
+      background: rgba(0, 245, 212, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #00A693, #00F5D4);
+      border-radius: 2px;
+      animation: loader-anim 1.2s ease forwards;
+    }
+
+    @keyframes loader-anim {
+      to {
+        width: 100%;
+      }
+    }
+
+    .loader-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(217, 255, 248, 0.4);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Typing cursor */
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #00F5D4;
+      margin-left: 3px;
+      vertical-align: text-bottom;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =================== PAGE LOADER =================== -->
+  <div id="page-loader">
+    <div class="loader-logo">DS</div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+    <div class="loader-text">Initializing Portfolio</div>
+  </div>
+
+  <!-- =================== CANVAS BACKGROUND =================== -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- =================== MOUSE GLOW =================== -->
+  <div id="mouse-glow"></div>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <span class="nav-logo-name">Dharshini S</span>
+          <span class="nav-logo-sub">AI · Full Stack · UI/UX</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact" class="nav-cta-btn">Let's Connect</a></li>
+        </ul>
+
+        <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+        <a href="#about"> <i data-lucide="user"></i> About</a>
+        <a href="#experience"><i data-lucide="briefcase"></i> Experience</a>
+        <a href="#skills"> <i data-lucide="cpu"></i> Skills</a>
+        <a href="#projects"> <i data-lucide="layers"></i> Projects</a>
+        <a href="#achievements"><i data-lucide="trophy"></i> Achievements</a>
+        <a href="#education"><i data-lucide="book-open"></i> Education</a>
+        <a href="#services"> <i data-lucide="sparkles"></i> Services</a>
+        <a href="#contact"> <i data-lucide="mail"></i> Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================== HERO SECTION =================== -->
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: Content -->
+        <div class="hero-content">
+          <div class="hero-eyebrow reveal">
+            <span class="hero-eyebrow-dot"></span>
+            <span class="hero-eyebrow-line"></span>
+            STATUS : ACTIVE_DEVELOPER
+          </div>
+
+          <h1 class="hero-heading reveal delay-1">
+            Building Smart
+            <span class="hero-highlight">AI Experiences</span>
+            <span class="hero-dim">&amp; Beautiful Digital Products</span>
+          </h1>
+
+          <p class="hero-subtext reveal delay-2">
+            I'm <strong>Dharshini S</strong> — a Computer Science Engineering student,
+            aspiring <span id="hero-typing"></span><span class="typing-cursor"></span>,
+            passionate about building futuristic digital experiences.
+          </p>
+
+          <div class="hero-ctas reveal delay-3">
+            <a href="#projects" class="btn btn-primary">
+              <i data-lucide="layers"></i> View My Work
+            </a>
+            <a href="#resume" class="btn btn-outline">
+              <i data-lucide="download"></i> Download Resume
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              Let's Connect <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="hero-stats reveal delay-4">
+            <div class="hero-stat">
+              <span class="hero-stat-num" data-counter data-target="3" data-suffix="+">3+</span>
+              <span class="hero-stat-lbl">Internships</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num" data-counter data-target="2" data-suffix="+">2+</span>
+              <span class="hero-stat-lbl">Projects</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num" data-counter data-target="9" data-decimals="2" data-suffix="">9.38</span>
+              <span class="hero-stat-lbl">CGPA</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">🏆</span>
+              <span class="hero-stat-lbl">GenAI Winner</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Avatar Visual -->
+        <div class="hero-visual reveal-right delay-2">
+          <div class="avatar-wrapper">
+            <!-- Spinning ring -->
+            <div class="avatar-glow-ring"></div>
+
+            <!-- HUD corners -->
+            <div class="avatar-hud tl"></div>
+            <div class="avatar-hud tr"></div>
+            <div class="avatar-hud bl"></div>
+            <div class="avatar-hud br"></div>
+
+            <!-- Avatar image -->
+            <div class="avatar-frame">
+              <img src="assets/avatar.png" alt="Dharshini S — AI Developer Avatar" loading="eager" />
+            </div>
+
+            <!-- Ground glow -->
+            <div class="avatar-puddle"></div>
+
+            <!-- Floating badges -->
+            <div class="skill-bubble sb-html">HTML5</div>
+            <div class="skill-bubble sb-css">CSS3</div>
+            <div class="skill-bubble sb-js">JavaScript</div>
+            <div class="skill-bubble sb-py">Python</div>
+            <div class="skill-bubble sb-fig">Figma</div>
+            <div class="skill-bubble sb-ai">AI / ML</div>
+            <div class="skill-bubble sb-ux">UI / UX</div>
+
+            <!-- Status badge -->
+            <div class="hero-status-badge">
+              <div class="badge-pulse"></div>
+              <div class="badge-text">
+                <strong>Available for Opportunities</strong>
+                <span>CSE Student · Batch 2028</span>
+              </div>
+            </div>
+
+            <!-- Experience badge -->
+            <div class="hero-exp-badge">
+              <span class="exp-num">3+</span>
+              <span class="exp-lbl">Internships</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.hero-grid -->
+    </div><!-- /.container -->
+
+    <!-- Scroll hint -->
+    <div class="scroll-indicator">
+      <i data-lucide="chevrons-down"></i>
+      Scroll to explore
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== ABOUT SECTION =================== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-header reveal">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">The Person Behind<br /><span class="gradient-text">The Code</span></h2>
+        <p class="section-subtitle">
+          A curious mind who turns ideas into impactful digital experiences.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Left: Story -->
+        <div class="about-story">
+          <p class="about-desc reveal">
+            I am a passionate <strong>Computer Science Engineering student</strong> who enjoys combining
+            creativity with technology. I love designing beautiful interfaces, building web applications,
+            and exploring <strong>AI-powered solutions</strong>. My journey started with curiosity and
+            has evolved into building real-world projects through internships, hackathons, and hands-on learning.
+          </p>
+
+          <div class="about-traits reveal delay-1">
+            <div class="trait-item"><i data-lucide="brain-circuit"></i> AI & Machine Learning Enthusiast</div>
+            <div class="trait-item"><i data-lucide="palette"></i> UI/UX Design Thinker</div>
+            <div class="trait-item"><i data-lucide="code-2"></i> Full Stack Web Developer</div>
+            <div class="trait-item"><i data-lucide="rocket"></i> Hackathon Competitor</div>
+            <div class="trait-item"><i data-lucide="users"></i> Team Collaborator</div>
+            <div class="trait-item"><i data-lucide="trending-up"></i> Continuous Learner</div>
+          </div>
+
+          <!-- Current education -->
+          <div class="about-edu-card reveal delay-2">
+            <div class="about-edu-icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="about-edu-info">
+              <div class="about-edu-name">Mailam Engineering College</div>
+              <div class="about-edu-detail">B.E Computer Science Engineering · 2024–2028</div>
+            </div>
+            <div class="about-edu-cgpa">CGPA 9.38</div>
+          </div>
+        </div>
+
+        <!-- Right: Stats + Passions -->
+        <div class="about-stats-col">
+          <div class="stats-panel reveal-right delay-1">
+            <div class="stat-block">
+              <span class="stat-block-icon">🎓</span>
+              <span class="stat-block-num" data-counter data-target="9" data-decimals="2">9.38</span>
+              <span class="stat-block-lbl">CGPA</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-block-icon">💼</span>
+              <span class="stat-block-num" data-counter data-target="3" data-suffix="+">3+</span>
+              <span class="stat-block-lbl">Internships</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-block-icon">🚀</span>
+              <span class="stat-block-num" data-counter data-target="2" data-suffix="+">2+</span>
+              <span class="stat-block-lbl">Live Projects</span>
+            </div>
+            <div class="stat-block">
+              <span class="stat-block-icon">🏆</span>
+              <span class="stat-block-num">🥈</span>
+              <span class="stat-block-lbl">GenAI Winner</span>
+            </div>
+          </div>
+
+          <div class="about-passions reveal-right delay-2" style="margin-top:24px">
+            <div class="passion-item">
+              <div class="passion-icon"><i data-lucide="bot"></i></div>
+              <div>
+                <div class="passion-title">Artificial Intelligence</div>
+                <div class="passion-desc">Exploring AI tools, NLP, and intelligent systems to build smarter apps.</div>
+              </div>
+            </div>
+            <div class="passion-item">
+              <div class="passion-icon"><i data-lucide="layout-dashboard"></i></div>
+              <div>
+                <div class="passion-title">UI/UX Design</div>
+                <div class="passion-desc">Crafting elegant, user-centered interfaces using Figma and modern design
+                  systems.</div>
+              </div>
+            </div>
+            <div class="passion-item">
+              <div class="passion-icon"><i data-lucide="globe"></i></div>
+              <div>
+                <div class="passion-title">Web Development</div>
+                <div class="passion-desc">Building responsive full-stack web apps with modern frameworks and clean code.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== EXPERIENCE SECTION =================== -->
+  <section id="experience">
+    <div class="container">
+      <div class="experience-header reveal">
+        <span class="section-tag">Experience</span>
+        <h2 class="section-title">My Professional<br /><span class="gradient-text">Journey</span></h2>
+        <p class="section-subtitle">
+          Real-world experience across frontend development, MERN stack, and UI/UX design.
+        </p>
+      </div>
+
+      <div class="exp-timeline">
+
+        <!-- Internship 1 -->
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-connector"></div>
+          <div class="glass-card exp-card">
+            <span class="exp-num-bg">01</span>
+            <div class="exp-card-head">
+              <div>
+                <span class="exp-company-tag">Twilight IT Solution</span>
+                <div class="exp-role-title">Web Developer Intern</div>
+                <div class="exp-company-name">Frontend Development &amp; Form Validation</div>
+              </div>
+              <span class="exp-status">Completed</span>
+            </div>
+            <p class="exp-desc">
+              Worked on building and improving HTML, CSS, and JavaScript websites with a strong focus
+              on form validations and UI consistency. Gained hands-on understanding of real-world
+              frontend workflows, debugging practices, and delivering production-ready web pages.
+            </p>
+            <div class="exp-tags">
+              <span class="exp-tag">HTML5</span>
+              <span class="exp-tag">CSS3</span>
+              <span class="exp-tag">JavaScript</span>
+              <span class="exp-tag">Form Validation</span>
+              <span class="exp-tag">Frontend</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship 2 -->
+        <div class="exp-item reveal delay-1">
+          <div class="exp-dot"></div>
+          <div class="exp-connector"></div>
+          <div class="glass-card exp-card">
+            <span class="exp-num-bg">02</span>
+            <div class="exp-card-head">
+              <div>
+                <span class="exp-company-tag">OneYes Info Tech Solution</span>
+                <div class="exp-role-title">MERN Stack Developer Intern</div>
+                <div class="exp-company-name">Banking Management System · Full Stack</div>
+              </div>
+              <span class="exp-status">Completed</span>
+            </div>
+            <p class="exp-desc">
+              Built a complete Banking Management System using the MERN stack (MongoDB, Express, React, Node.js).
+              Took ownership of designing the user interface in Figma and translating it into a working application.
+              Improved problem-solving skills and developed a solid understanding of full-stack data flow.
+            </p>
+            <div class="exp-tags">
+              <span class="exp-tag">MongoDB</span>
+              <span class="exp-tag">Express.js</span>
+              <span class="exp-tag">React.js</span>
+              <span class="exp-tag">Node.js</span>
+              <span class="exp-tag">Figma</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship 3 -->
+        <div class="exp-item reveal delay-2">
+          <div class="exp-dot"></div>
+          <div class="exp-connector"></div>
+          <div class="glass-card exp-card">
+            <span class="exp-num-bg">03</span>
+            <div class="exp-card-head">
+              <div>
+                <span class="exp-company-tag">EKHAI Business Solution</span>
+                <div class="exp-role-title">UI/UX Designer Intern</div>
+                <div class="exp-company-name">Interface Design &amp; Prototyping</div>
+              </div>
+              <span class="exp-status">Completed</span>
+            </div>
+            <p class="exp-desc">
+              Created stunning, user-centered Figma interfaces and interactive prototypes for business applications.
+              Explored advanced Figma features including plugins, auto-layout, design tokens, and component systems.
+              Strengthened visual design thinking and ability to translate business requirements into elegant UI.
+            </p>
+            <div class="exp-tags">
+              <span class="exp-tag">Figma</span>
+              <span class="exp-tag">UI Design</span>
+              <span class="exp-tag">Prototyping</span>
+              <span class="exp-tag">Design Systems</span>
+              <span class="exp-tag">UX Research</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== SKILLS SECTION =================== -->
+  <section id="skills">
+    <div class="container">
+      <div class="skills-header reveal">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-title">My Tech<br /><span class="gradient-text">Arsenal</span></h2>
+        <p class="section-subtitle">
+          A curated collection of technologies and tools I use to build futuristic digital products.
+        </p>
+      </div>
+
+      <!-- Technical Skills -->
+      <div class="skills-category reveal">
+        <div class="skills-cat-label">
+          <i data-lucide="cpu"></i> Technical Skills
+        </div>
+        <div class="skills-orb-grid">
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🌐</span>
+            <span class="skill-orb-name">HTML5</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🎨</span>
+            <span class="skill-orb-name">CSS3</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">⚡</span>
+            <span class="skill-orb-name">JavaScript</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🐍</span>
+            <span class="skill-orb-name">Python</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">💻</span>
+            <span class="skill-orb-name">C Programming</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🖊️</span>
+            <span class="skill-orb-name">Figma</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🖼️</span>
+            <span class="skill-orb-name">Photoshop</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🤖</span>
+            <span class="skill-orb-name">AI Image Gen</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">📱</span>
+            <span class="skill-orb-name">UI/UX Design</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+          <div class="skill-orb">
+            <span class="skill-orb-emoji">🏗️</span>
+            <span class="skill-orb-name">Frontend Dev</span>
+            <div class="skill-level">
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot filled"></div>
+              <div class="skill-level-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skills-category reveal delay-2">
+        <div class="skills-cat-label">
+          <i data-lucide="heart-handshake"></i> Soft Skills
+        </div>
+        <div class="soft-skills-grid">
+          <div class="soft-skill-pill"><span class="soft-skill-icon">💬</span><span
+              class="soft-skill-name">Communication</span></div>
+          <div class="soft-skill-pill"><span class="soft-skill-icon">👑</span><span
+              class="soft-skill-name">Leadership</span></div>
+          <div class="soft-skill-pill"><span class="soft-skill-icon">🤝</span><span
+              class="soft-skill-name">Teamwork</span></div>
+          <div class="soft-skill-pill"><span class="soft-skill-icon">👂</span><span class="soft-skill-name">Active
+              Listening</span></div>
+          <div class="soft-skill-pill"><span class="soft-skill-icon">🧩</span><span class="soft-skill-name">Problem
+              Solving</span></div>
+          <div class="soft-skill-pill"><span class="soft-skill-icon">⏱️</span><span class="soft-skill-name">Time
+              Management</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== PROJECTS SECTION =================== -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <div class="projects-header-left reveal">
+          <span class="section-tag">Projects</span>
+          <h2 class="section-title">Featured<br /><span class="gradient-text">Work</span></h2>
+        </div>
+        <div class="projects-header-right reveal delay-2">
+          <span class="project-count-badge">02 Projects</span>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: CHISA AI -->
+        <div class="project-card reveal" data-project="1">
+          <div class="project-mockup">
+            <div class="mockup-bg"></div>
+            <div class="mockup-grid-lines"></div>
+            <div class="mockup-topbar">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+              <div class="mockup-url"></div>
+            </div>
+            <div class="mockup-content">
+              <span class="mockup-icon">🌾</span>
+              <span class="mockup-label">CHISA AI · Agriculture</span>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-cat">AI · Agriculture · Web</div>
+            <div class="project-name">
+              CHISA AI
+              <span class="project-name-sub">Smart Agriculture Assistant Platform</span>
+            </div>
+            <p class="project-desc">
+              An AI-powered smart agriculture platform designed to help farmers with intelligent farming solutions.
+              Provides native language support, crop recommendations, and smart farming assistance for rural
+              communities.
+            </p>
+            <div class="project-features">
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>Agriculture guidance &amp; crop recommendations
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>Native language support for accessibility
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>AI-powered smart farming insights with multiple features
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>Farmer-friendly intuitive design
+              </div>
+            </div>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">AI</span>
+                <span class="project-tag">Web Dev</span>
+                <span class="project-tag">Team Project</span>
+                <span class="project-tag">NLP</span>
+              </div>
+              <a href="https://www.chisa.in/" class="project-link-btn">
+                View Project <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Health Chatbot -->
+        <div class="project-card reveal delay-2" data-project="2">
+          <div class="project-mockup">
+            <div class="mockup-bg"></div>
+            <div class="mockup-grid-lines"></div>
+            <div class="mockup-topbar">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+              <div class="mockup-url"></div>
+            </div>
+            <div class="mockup-content">
+              <span class="mockup-icon">🏥</span>
+              <span class="mockup-label">Health Bot · AI Assistant</span>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-cat">Python · AI · Healthcare</div>
+            <div class="project-name">
+              Health Chatbot
+              <span class="project-name-sub">AI-Powered Healthcare Assistant</span>
+            </div>
+            <p class="project-desc">
+              Developed an AI-powered healthcare chatbot using Python, HTML, and APIs to provide quick
+              and accessible health information. Designed to give users immediate health guidance with
+              a clean, easy-to-use interface.
+            </p>
+            <div class="project-features">
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>AI-powered health assistance &amp; guidance
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>Fast, real-time chatbot responses
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>API integration for medical information
+              </div>
+              <div class="project-feature">
+                <div class="project-feature-dot"></div>Clean, accessible web interface
+              </div>
+            </div>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">API</span>
+                <span class="project-tag">AI Chatbot</span>
+              </div>
+              <a href="#" class="project-link-btn">
+                View Project <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== ACHIEVEMENTS SECTION =================== -->
+  <section id="achievements">
+    <div class="container">
+      <div class="achievements-header reveal">
+        <span class="section-tag">Achievements</span>
+        <h2 class="section-title">Awards &amp;<br /><span class="gradient-text">Recognition</span></h2>
+        <p class="section-subtitle">Moments that prove passion meets performance.</p>
+      </div>
+
+      <div class="achievements-grid">
+
+        <div class="achievement-card reveal">
+          <div class="achievement-glow-bg"></div>
+          <span class="achievement-emoji">🏆</span>
+          <div class="achievement-title">2nd Prize — GenAI Hackathon</div>
+          <div class="achievement-sub">Won 2nd place in a competitive Generative AI hackathon,<br />building CHISA AI —
+            an agriculture intelligence platform.</div>
+          <div class="achievement-badge">Hackathon Winner</div>
+        </div>
+
+        <div class="achievement-card reveal delay-2">
+          <div class="achievement-glow-bg"></div>
+          <span class="achievement-emoji">⚡</span>
+          <div class="achievement-title">TCS CodeVita — 2 Rounds Cleared</div>
+          <div class="achievement-sub">Selected and qualified for 2 competitive rounds in TCS CodeVita,<br />a
+            prestigious national-level coding competition.</div>
+          <div class="achievement-badge">National Level</div>
+        </div>
+
+        <div class="achievement-card reveal delay-4">
+          <div class="achievement-glow-bg"></div>
+          <span class="achievement-emoji">🎓</span>
+          <div class="achievement-title">Academic Excellence — CGPA 9.38</div>
+          <div class="achievement-sub">Maintaining a strong academic record of 9.38 CGPA in<br />B.E Computer Science
+            Engineering at Mailam Engineering College.</div>
+          <div class="achievement-badge">Top Performer</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== EDUCATION SECTION =================== -->
+  <section id="education">
+    <div class="container">
+      <div class="education-header reveal">
+        <span class="section-tag">Education</span>
+        <h2 class="section-title">My Learning<br /><span class="gradient-text">Journey</span></h2>
+        <p class="section-subtitle">A path built on curiosity, discipline, and consistent growth.</p>
+      </div>
+
+      <div class="edu-journey">
+
+        <!-- B.E CSE -->
+        <div class="edu-entry reveal">
+          <div class="edu-card">
+            <span class="edu-level-badge">Current</span>
+            <div class="edu-level-name">B.E Computer Science Engineering</div>
+            <div class="edu-institution">Mailam Engineering College · 2024 – 2028</div>
+            <div class="edu-institution">Affiliated to Anna University</div>
+            <div class="edu-score-row">
+              <div class="edu-score-bar-wrap">
+                <div class="edu-score-bar-fill" style="--score-pct: 93.8%;" data-pct="93.8%"></div>
+              </div>
+              <span class="edu-score-value">CGPA 9.38</span>
+            </div>
+          </div>
+          <div class="edu-center">
+            <div class="edu-node"></div>
+            <div class="edu-year-tag">2024–28</div>
+          </div>
+          <div class="edu-empty"></div>
+        </div>
+
+        <!-- HSC -->
+        <div class="edu-entry reveal delay-2">
+          <div class="edu-empty"></div>
+          <div class="edu-center">
+            <div class="edu-node"></div>
+            <div class="edu-year-tag">2024</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-level-badge">Higher Secondary</span>
+            <div class="edu-level-name">HSC — Class XII</div>
+            <div class="edu-institution">Immaculate Heart of Mary GHSS · 2023 – 2024</div>
+            <div class="edu-institution">State Board of Tamil Nadu</div>
+            <div class="edu-score-row">
+              <div class="edu-score-bar-wrap">
+                <div class="edu-score-bar-fill" style="--score-pct: 83.16%;" data-pct="83.16%"></div>
+              </div>
+              <span class="edu-score-value">83.16%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SSLC -->
+        <div class="edu-entry reveal delay-4">
+          <div class="edu-card">
+            <span class="edu-level-badge">Secondary</span>
+            <div class="edu-level-name">SSLC — Class X</div>
+            <div class="edu-institution">Immaculate Heart of Mary GHSS · 2021 – 2022</div>
+            <div class="edu-institution">State Board of Tamil Nadu</div>
+            <div class="edu-score-row">
+              <div class="edu-score-bar-wrap">
+                <div class="edu-score-bar-fill" style="--score-pct: 76%;" data-pct="76%"></div>
+              </div>
+              <span class="edu-score-value">76%</span>
+            </div>
+          </div>
+          <div class="edu-center">
+            <div class="edu-node"></div>
+            <div class="edu-year-tag">2022</div>
+          </div>
+          <div class="edu-empty"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== SERVICES SECTION =================== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="section-tag">Services</span>
+        <h2 class="section-title">What I<br /><span class="gradient-text">Can Do For You</span></h2>
+        <p class="section-subtitle">
+          From idea to launch — I deliver end-to-end digital solutions.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon-wrap"><i data-lucide="palette"></i></div>
+          <div class="service-title">UI/UX Design</div>
+          <p class="service-desc">Crafting stunning, user-centered interfaces using Figma — from wireframes to
+            pixel-perfect prototypes.</p>
+        </div>
+
+        <div class="service-card reveal delay-1">
+          <div class="service-icon-wrap"><i data-lucide="globe"></i></div>
+          <div class="service-title">Web Development</div>
+          <p class="service-desc">Building responsive, modern websites and web apps using HTML, CSS, JavaScript, and the
+            MERN stack.</p>
+        </div>
+
+        <div class="service-card reveal delay-2">
+          <div class="service-icon-wrap"><i data-lucide="bot"></i></div>
+          <div class="service-title">AI Projects</div>
+          <p class="service-desc">Developing AI-powered applications and chatbots with Python, APIs, and intelligent
+            automation.</p>
+        </div>
+
+        <div class="service-card reveal delay-3">
+          <div class="service-icon-wrap"><i data-lucide="layout-dashboard"></i></div>
+          <div class="service-title">Frontend Development</div>
+          <p class="service-desc">Translating designs into clean, performant, interactive frontend code with great
+            attention to detail.</p>
+        </div>
+
+        <div class="service-card reveal delay-4">
+          <div class="service-icon-wrap"><i data-lucide="briefcase"></i></div>
+          <div class="service-title">Portfolio Design</div>
+          <p class="service-desc">Creating premium, memorable personal portfolio websites that stand out to recruiters
+            and clients.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== RESUME SECTION =================== -->
+  <section id="resume">
+    <div class="container">
+      <div class="resume-card reveal">
+        <div class="resume-scanline"></div>
+        <div class="resume-inner">
+          <span class="resume-eyebrow">[ OPEN TO OPPORTUNITIES ]</span>
+          <h2 class="resume-title">Want to Know<br /><span>More About Me?</span></h2>
+          <p class="resume-subtitle">
+            Download my resume to explore my full skill set, experience, and educational background in detail.
+          </p>
+          <a href="#" class="btn btn-primary resume-btn">
+            <i data-lucide="download"></i> Download Resume
+          </a>
+          <div class="resume-tech-icons">
+            <div class="resume-tech-icon"><span>🌐</span><span>HTML</span></div>
+            <div class="resume-tech-icon"><span>⚡</span><span>JS</span></div>
+            <div class="resume-tech-icon"><span>🐍</span><span>Python</span></div>
+            <div class="resume-tech-icon"><span>🤖</span><span>AI</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =================== CONTACT SECTION =================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-header reveal">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Let's Build Something<br /><span class="gradient-text">Amazing Together</span></h2>
+        <p class="section-subtitle">
+          Have an idea, opportunity, or just want to say hello? My inbox is always open.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Info -->
+        <div class="contact-info reveal-left">
+          <h3 class="contact-info-heading">Get in Touch</h3>
+          <p class="contact-info-sub">
+            I'm currently open to internships, freelance projects, and full-time opportunities.
+            Whether it's a quick question or a big project — let's talk!
+          </p>
+
+          <div class="contact-items">
+            <a href="mailto:dharshini230107@gmail.com" class="contact-item">
+              <div class="contact-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <span class="contact-label">Email</span>
+                <span class="contact-value">dharshini230107@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+91 93458 96804" class="contact-item">
+              <div class="contact-icon"><i data-lucide="phone"></i></div>
+              <div>
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">+91 93458 96804</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/dharshini-s2301" class="contact-item">
+              <div class="contact-icon"><i data-lucide="linkedin"></i></div>
+              <div>
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">www.linkedin.com/in/dharshini-s2301</span>
+              </div>
+            </a>
+            <a href="https://github.com/DHARSHINI-2329" class="contact-item">
+              <div class="contact-icon"><i data-lucide="github"></i></div>
+              <div>
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">https://github.com/DHARSHINI-2329</span>
+              </div>
+            </a>
+            <div class="contact-item">
+              <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+              <div>
+                <span class="contact-label">Location</span>
+                <span class="contact-value">Tamil Nadu, India 🇮🇳</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-socials" style="margin-top:24px">
+            <a href="https://www.linkedin.com/in/dharshini-s2301" class="social-btn"><i data-lucide="linkedin"></i>
+              LinkedIn</a>
+            <a href="https://github.com/DHARSHINI-2329" class="social-btn"><i data-lucide="github"></i> GitHub</a>
+            <a href="https://x.com/Me_DHARSHINI_S" class="social-btn"><i data-lucide="twitter"></i> Twitter</a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-right">
+          <div class="glass-card contact-form-card">
+            <div class="form-title">Send a Message ✉️</div>
+            <form class="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name">Name</label>
+                  <input id="contact-name" type="text" class="form-control" placeholder="Your Name" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email</label>
+                  <input id="contact-email" type="email" class="form-control" placeholder="your@email.com" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-subject">Subject</label>
+                <input id="contact-subject" type="text" class="form-control" placeholder="What's this about?" />
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" class="form-control" rows="5"
+                  placeholder="Tell me about your project or opportunity..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary form-submit">
+                <i data-lucide="send"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-divider"></div>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo-text">DS</div>
+        <div class="footer-copy">
+          © <span id="footer-year"></span> — Designed &amp; Developed with 💚 by <span>Dharshini S</span>
+        </div>
+        <div class="footer-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Work</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================== BACK TO TOP =================== -->
+  <button id="back-to-top" aria-label="Back to top">
+    <i data-lucide="chevron-up"></i>
+  </button>
+
+  <!-- =================== JS FILES =================== -->
+  <script src="js/particles.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

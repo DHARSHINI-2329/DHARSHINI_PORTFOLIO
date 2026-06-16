@@ -1,0 +1,129 @@
+/* =============================================
+   SERVICES.CSS — Services Section
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#services {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+.services-header .section-subtitle { margin: 0 auto; }
+
+/* --- Services Grid --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Service Card --- */
+.service-card {
+  padding: 36px 24px 32px;
+  border-radius: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(16px);
+  text-align: center;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--t-mid);
+}
+
+/* Bottom glow bar */
+.service-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--green-neon), transparent);
+  transform: scaleX(0);
+  transition: transform 0.45s ease;
+}
+.service-card:hover::before { transform: scaleX(1); }
+
+/* Radial glow inside */
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,245,212,0.12) 0%, transparent 70%);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity var(--t-mid);
+  pointer-events: none;
+}
+.service-card:hover::after { opacity: 1; }
+
+.service-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Icon wrapper */
+.service-icon-wrap {
+  width: 68px; height: 68px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,166,147,0.18), rgba(0,245,212,0.08));
+  border: 1px solid var(--border-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  font-size: 1.6rem;
+  transition: all var(--t-mid);
+  position: relative;
+  z-index: 1;
+}
+.service-icon-wrap i {
+  color: var(--green-neon);
+  font-size: 1.4rem;
+  transition: color var(--t-fast);
+}
+.service-card:hover .service-icon-wrap {
+  background: linear-gradient(135deg, var(--green-mid), var(--green-bright));
+  border-color: var(--green-bright);
+  box-shadow: 0 8px 28px rgba(0,201,167,0.35);
+  transform: scale(1.08) rotate(4deg);
+}
+.service-card:hover .service-icon-wrap i { color: #07121C; }
+
+.service-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  transition: color var(--t-fast);
+}
+.service-card:hover .service-title { color: var(--green-neon); }
+
+.service-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+}

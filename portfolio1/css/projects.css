@@ -1,0 +1,289 @@
+/* =============================================
+   PROJECTS.CSS — Cinematic Project Showcase
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#projects {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+
+.projects-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.projects-header-left {}
+.projects-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.project-count-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--green-neon);
+  padding: 6px 14px;
+  border: 1px solid var(--border-glow);
+  border-radius: 100px;
+  background: var(--green-glow-sm);
+}
+
+/* --- Project Grid --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+/* --- Individual Project Card --- */
+.project-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(16px);
+  transition: all var(--t-mid);
+  position: relative;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gradient border glow on hover */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--green-neon), transparent 50%, var(--green-mid));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--t-mid);
+  pointer-events: none;
+}
+.project-card:hover::after { opacity: 1; }
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- Mockup Preview Area --- */
+.project-mockup {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mockup-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.project-card:hover .mockup-bg { transform: scale(1.04); }
+
+.mockup-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,212,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,212,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  z-index: 1;
+}
+
+/* Project 1 — agriculture green gradient */
+.project-card[data-project="1"] .mockup-bg {
+  background: linear-gradient(145deg, rgba(0,100,80,0.5) 0%, rgba(0,166,147,0.25) 40%, rgba(7,18,28,0.8) 100%);
+}
+/* Project 2 — health blue-green */
+.project-card[data-project="2"] .mockup-bg {
+  background: linear-gradient(145deg, rgba(0,60,100,0.5) 0%, rgba(0,120,160,0.25) 40%, rgba(7,18,28,0.8) 100%);
+}
+
+.mockup-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.mockup-icon {
+  font-size: 3.8rem;
+  display: block;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 16px rgba(0,245,212,0.4));
+  transition: transform 0.4s ease;
+}
+.project-card:hover .mockup-icon { transform: scale(1.1) translateY(-4px); }
+.mockup-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--green-neon);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Mockup top bar (fake browser bar) */
+.mockup-topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 28px;
+  background: rgba(7,18,28,0.7);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+  z-index: 3;
+}
+.mockup-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.mockup-dot.red    { background: #ff5f57; }
+.mockup-dot.yellow { background: #febc2e; }
+.mockup-dot.green  { background: var(--green-bright); }
+.mockup-url {
+  flex: 1;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+  margin-left: 8px;
+}
+
+/* --- Card Body --- */
+.project-body {
+  padding: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-cat {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--green-mid);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+.project-name-sub {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.78;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* Features list */
+.project-features {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 22px;
+}
+.project-feature {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.project-feature-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green-neon);
+  box-shadow: 0 0 6px var(--green-neon);
+  flex-shrink: 0;
+}
+
+/* Footer row */
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: rgba(0,201,167,0.1);
+  border: 1px solid rgba(0,201,167,0.18);
+  transition: all var(--t-fast);
+}
+.project-tag:hover {
+  background: rgba(0,201,167,0.2);
+  border-color: var(--green-bright);
+}
+
+.project-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  transition: all var(--t-fast);
+}
+.project-link-btn:hover {
+  color: var(--green-neon);
+  border-color: var(--border-glow);
+  background: var(--green-glow-sm);
+  transform: translateY(-1px);
+}
+.project-link-btn i { transition: transform var(--t-fast); }
+.project-link-btn:hover i { transform: translate(2px, -2px); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .project-body { padding: 20px; }
+  .project-name { font-size: 1.25rem; }
+}

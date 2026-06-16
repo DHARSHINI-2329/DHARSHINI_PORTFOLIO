@@ -1,0 +1,161 @@
+/* =============================================
+   ACHIEVEMENTS.CSS — Achievement Cards
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#achievements {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+
+#achievements::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,245,212,0.05) 0%, transparent 70%);
+  right: -100px; top: 50%;
+  transform: translateY(-50%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.achievements-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Individual Achievement Card --- */
+.achievement-card {
+  padding: 40px 32px 36px;
+  border-radius: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(18px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: all var(--t-mid);
+}
+
+/* Top accent bar */
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--green-neon) 50%, transparent 100%);
+  transform: scaleX(0);
+  transition: transform var(--t-mid);
+  border-radius: 3px 3px 0 0;
+}
+.achievement-card:hover::before { transform: scaleX(1); }
+
+/* Side glow effect */
+.achievement-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,245,212,0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-mid);
+  pointer-events: none;
+}
+.achievement-card:hover::after { opacity: 1; }
+
+.achievement-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Glow background circle */
+.achievement-glow-bg {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,50,0.07) 0%, transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+  transition: transform var(--t-mid);
+}
+.achievement-card:hover .achievement-glow-bg {
+  transform: translateX(-50%) scale(1.3);
+}
+
+/* Trophy emoji */
+.achievement-emoji {
+  font-size: 3.2rem;
+  display: block;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+  animation: trophy-pulse 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255,200,50,0.4));
+}
+@keyframes trophy-pulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255,200,50,0.35)); transform: scale(1); }
+  50%       { filter: drop-shadow(0 0 24px rgba(255,200,50,0.65)); transform: scale(1.06); }
+}
+
+.achievement-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+.achievement-sub {
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--green-neon);
+  padding: 5px 14px;
+  border: 1px solid var(--border-glow);
+  border-radius: 100px;
+  background: var(--green-glow-sm);
+  position: relative;
+  z-index: 1;
+}
+.achievement-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green-neon);
+  box-shadow: 0 0 6px var(--green-neon);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .achievements-grid { grid-template-columns: 1fr; }
+  .achievement-card  { padding: 30px 24px; }
+}

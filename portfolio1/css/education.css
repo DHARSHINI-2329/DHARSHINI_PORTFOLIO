@@ -1,0 +1,224 @@
+/* =============================================
+   EDUCATION.CSS — Education Journey Timeline
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#education {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+
+.education-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+/* --- Wrapper --- */
+.edu-journey {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Vertical progress line */
+.edu-journey::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--green-neon) 15%,
+    var(--green-mid) 55%,
+    rgba(0,140,118,0.3) 85%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(0,245,212,0.25);
+  z-index: 0;
+}
+
+/* --- Entry Row --- */
+.edu-entry {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 40px;
+  position: relative;
+}
+.edu-entry:last-child { margin-bottom: 0; }
+
+/* Left side content (odd) */
+.edu-entry:nth-child(odd)  .edu-card { grid-column: 1; text-align: right; }
+.edu-entry:nth-child(odd)  .edu-empty { grid-column: 3; }
+.edu-entry:nth-child(even) .edu-card { grid-column: 3; text-align: left; }
+.edu-entry:nth-child(even) .edu-empty { grid-column: 1; }
+
+/* --- Center Node Column --- */
+.edu-center {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.edu-node {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2.5px solid var(--green-neon);
+  box-shadow: 0 0 14px rgba(0,245,212,0.6), 0 0 0 4px rgba(0,245,212,0.1);
+  transition: all var(--t-mid);
+  cursor: default;
+  z-index: 2;
+  position: relative;
+}
+.edu-entry:hover .edu-node {
+  background: var(--green-neon);
+  box-shadow: 0 0 28px var(--green-neon), 0 0 0 8px rgba(0,245,212,0.15);
+  transform: scale(1.4);
+}
+
+/* Year tag on node */
+.edu-year-tag {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--green-neon);
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+/* --- Card --- */
+.edu-card {
+  padding: 26px 28px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(16px);
+  transition: all var(--t-mid);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent line */
+.edu-card::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  top: 16px; bottom: 16px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--green-neon), var(--green-mid));
+  transition: all var(--t-mid);
+}
+.edu-entry:nth-child(odd)  .edu-card::before { right: 0; }
+.edu-entry:nth-child(even) .edu-card::before { left: 0; }
+
+.edu-card:hover {
+  border-color: var(--border-glow);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+.edu-card:hover::before {
+  box-shadow: 0 0 10px var(--green-neon);
+}
+
+.edu-level-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--green-neon);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid var(--border-glow);
+  border-radius: 100px;
+  background: var(--green-glow-sm);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.edu-level-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.edu-institution {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.edu-score-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edu-score-bar-wrap {
+  flex: 1;
+  min-width: 80px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+.edu-score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--green-mid), var(--green-neon));
+  box-shadow: 0 0 6px var(--green-neon);
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+  width: 0;
+}
+.edu-entry.visible .edu-score-bar-fill {
+  width: var(--score-pct, 80%);
+}
+
+.edu-score-value {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green-neon);
+  white-space: nowrap;
+}
+
+.edu-empty { /* spacer column */ }
+
+/* --- Mobile layout: stack vertically --- */
+@media (max-width: 768px) {
+  .edu-journey::before { left: 20px; transform: none; }
+
+  .edu-entry {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto;
+    gap: 0 16px;
+  }
+  .edu-entry:nth-child(odd)  .edu-card,
+  .edu-entry:nth-child(even) .edu-card {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+  .edu-entry:nth-child(odd)  .edu-card::before,
+  .edu-entry:nth-child(even) .edu-card::before { left: 0; right: auto; }
+  .edu-center { grid-column: 1; grid-row: 1; align-items: flex-start; padding-top: 22px; }
+  .edu-empty  { display: none; }
+}

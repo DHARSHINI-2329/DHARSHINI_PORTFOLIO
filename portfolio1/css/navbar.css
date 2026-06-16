@@ -1,0 +1,176 @@
+/* =============================================
+   NAVBAR.CSS — Navigation Styles
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 18px 0;
+  transition: all var(--t-mid);
+}
+
+#navbar.scrolled {
+  background: rgba(7, 18, 28, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.nav-logo-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green-neon), var(--green-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.nav-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 9px;
+  transition: all var(--t-fast);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 1.5px;
+  background: var(--green-neon);
+  border-radius: 2px;
+  transition: transform var(--t-fast);
+}
+.nav-links a:hover {
+  color: var(--green-neon);
+  background: var(--green-glow-sm);
+}
+.nav-links a:hover::after { transform: translateX(-50%) scaleX(1); }
+.nav-links a.active {
+  color: var(--green-neon);
+}
+.nav-links a.active::after { transform: translateX(-50%) scaleX(1); }
+
+/* CTA Hire Me button */
+.nav-cta-btn {
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  color: var(--green-neon) !important;
+  border: 1px solid var(--border-glow) !important;
+  padding: 8px 16px !important;
+  border-radius: 9px !important;
+  transition: all var(--t-fast) !important;
+}
+.nav-cta-btn::after { display: none !important; }
+.nav-cta-btn:hover {
+  background: var(--green-glow) !important;
+  box-shadow: 0 0 20px rgba(0,245,212,0.2) !important;
+}
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color var(--t-fast);
+}
+.nav-hamburger:hover { border-color: var(--border-subtle); }
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--green-neon);
+  border-radius: 2px;
+  transition: all var(--t-fast);
+  transform-origin: left center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(-1px); width: 20px; }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(1px); width: 20px; }
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 0 16px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 12px;
+  animation: slideDown 0.3s ease forwards;
+}
+.mobile-menu.open { display: flex; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 11px 14px;
+  border-radius: 10px;
+  transition: all var(--t-fast);
+}
+.mobile-menu a:hover {
+  color: var(--green-neon);
+  background: var(--green-glow-sm);
+  padding-left: 18px;
+}
+.mobile-menu a i { color: var(--green-neon); width: 16px; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}

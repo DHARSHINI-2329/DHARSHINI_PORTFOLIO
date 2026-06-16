@@ -1,0 +1,190 @@
+/* =============================================
+   EXPERIENCE.CSS — Experience Timeline
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#experience {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+
+.experience-header {
+  margin-bottom: 70px;
+}
+
+/* --- Timeline container --- */
+.exp-timeline {
+  position: relative;
+  padding-left: 48px;
+}
+
+/* Vertical glowing line */
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 10px;
+  bottom: 20px;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    var(--green-neon) 0%,
+    var(--green-mid) 40%,
+    rgba(0,140,118,0.3) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(0,245,212,0.3);
+}
+
+/* --- Timeline Item --- */
+.exp-item {
+  position: relative;
+  margin-bottom: 44px;
+}
+.exp-item:last-child { margin-bottom: 0; }
+
+/* Dot on the line */
+.exp-dot {
+  position: absolute;
+  left: -38px;
+  top: 22px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--green-neon);
+  box-shadow: 0 0 10px rgba(0,245,212,0.5);
+  transition: all var(--t-mid);
+  z-index: 1;
+}
+.exp-item:hover .exp-dot {
+  background: var(--green-neon);
+  box-shadow: 0 0 22px var(--green-neon), 0 0 0 4px rgba(0,245,212,0.15);
+  transform: scale(1.4);
+}
+
+/* Connector line from dot to card */
+.exp-connector {
+  position: absolute;
+  left: -23px;
+  top: 28px;
+  width: 22px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green-neon), var(--border-glow));
+  opacity: 0.5;
+  transition: opacity var(--t-fast);
+}
+.exp-item:hover .exp-connector { opacity: 1; }
+
+/* Card */
+.exp-card {
+  padding: 28px 32px;
+  cursor: default;
+}
+.exp-card:hover {
+  border-color: var(--border-glow);
+}
+
+/* Card header */
+.exp-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.exp-company-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--green-neon);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid var(--border-glow);
+  border-radius: 100px;
+  background: var(--green-glow-sm);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.exp-role-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.exp-company-name {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.exp-status {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--green-mid);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  padding: 4px 12px;
+  white-space: nowrap;
+  background: rgba(0,140,118,0.1);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Description */
+.exp-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+/* Tech tags */
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.exp-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  padding: 4px 12px;
+  border-radius: 7px;
+  background: rgba(0,201,167,0.1);
+  border: 1px solid rgba(0,201,167,0.2);
+  transition: all var(--t-fast);
+}
+.exp-tag:hover {
+  background: rgba(0,201,167,0.2);
+  border-color: var(--green-bright);
+  color: var(--green-neon);
+}
+
+/* Number badge in background */
+.exp-num-bg {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(0,245,212,0.03);
+  line-height: 1;
+  pointer-events: none;
+  transition: color var(--t-mid);
+  user-select: none;
+}
+.exp-card:hover .exp-num-bg { color: rgba(0,245,212,0.06); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .exp-timeline { padding-left: 32px; }
+  .exp-timeline::before { left: 8px; }
+  .exp-dot { left: -30px; }
+  .exp-connector { display: none; }
+  .exp-card { padding: 20px; }
+}

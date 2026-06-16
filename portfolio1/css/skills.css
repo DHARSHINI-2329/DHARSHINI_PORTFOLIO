@@ -1,0 +1,184 @@
+/* =============================================
+   SKILLS.CSS — Interactive Skill Galaxy
+   Dharshini S — Futuristic Portfolio
+   ============================================= */
+
+#skills {
+  padding: var(--section-py) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Large decorative glow */
+#skills::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,245,212,0.04) 0%, transparent 70%);
+  right: -150px; top: 50%;
+  transform: translateY(-50%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+  z-index: 2;
+}
+.skills-header .section-subtitle {
+  margin: 0 auto;
+}
+
+/* --- Skill Category --- */
+.skills-category {
+  margin-bottom: 52px;
+  position: relative;
+  z-index: 2;
+}
+
+.skills-cat-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+.skills-cat-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-subtle), transparent);
+}
+.skills-cat-label i { color: var(--green-neon); }
+
+/* --- Skill Orb Grid --- */
+.skills-orb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Individual Skill Orb */
+.skill-orb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(12px);
+  cursor: default;
+  transition: all var(--t-mid);
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Shine swipe effect on hover */
+.skill-orb::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,245,212,0.07), transparent);
+  transition: left 0.5s ease;
+}
+.skill-orb:hover::before { left: 160%; }
+
+/* Bottom glow underline */
+.skill-orb::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green-neon), transparent);
+  transform: scaleX(0);
+  transition: transform var(--t-mid);
+}
+.skill-orb:hover::after { transform: scaleX(1); }
+
+.skill-orb:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35), 0 0 20px rgba(0,245,212,0.1);
+}
+
+.skill-orb-emoji {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.skill-orb-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--t-fast);
+}
+.skill-orb:hover .skill-orb-name { color: var(--green-neon); }
+
+/* Level indicator dots */
+.skill-level {
+  display: flex;
+  gap: 3px;
+  margin-left: 4px;
+}
+.skill-level-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+  transition: background var(--t-fast);
+}
+.skill-level-dot.filled { background: var(--green-neon); box-shadow: 0 0 4px var(--green-neon); }
+
+/* --- Soft Skills --- */
+.soft-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.soft-skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 100px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(12px);
+  cursor: default;
+  transition: all var(--t-mid);
+}
+.soft-skill-pill:hover {
+  border-color: var(--border-glow);
+  background: var(--green-glow-sm);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 14px rgba(0,245,212,0.1);
+}
+.soft-skill-icon {
+  font-size: 1rem;
+}
+.soft-skill-name {
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--t-fast);
+}
+.soft-skill-pill:hover .soft-skill-name { color: var(--green-neon); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .skills-orb-grid { gap: 10px; }
+  .skill-orb { padding: 10px 14px; }
+  .skill-orb-name { font-size: 0.8rem; }
+}
